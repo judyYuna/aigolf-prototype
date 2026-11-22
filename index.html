@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOLPING AI FITTING</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Global header -->
+    <header class="site-header" data-header>
+      <div class="site-header__inner">
+        <a class="brand" href="#" data-go="login" aria-label="GOLPING AI FITTING">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="28" height="28">
+              <path fill="currentColor" d="M20 2c-2.2 8.4-7.6 13.2-14.5 15.2 7.1 1.6 12.7 6.8 14.5 15.6 1.8-8.8 7.4-14 14.5-15.6C27.6 15.2 22.2 10.4 20 2z"/>
+              <circle cx="20" cy="20" r="3.2" fill="#fff"/>
+            </svg>
+          </span>
+          <span class="brand__text">
+            <strong>GOLPING</strong>
+            <span>AI FITTING</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="#">골핑</a>
+          <a href="#">골프존마켓</a>
+          <a href="#">스타일캐디</a>
+        </nav>
+        <div class="site-header__right">
+          <span class="user-chip" data-user-chip hidden>강유나 님</span>
+          <button type="button" class="link-btn" data-login-link>로그인</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ========== SCREEN: LOGIN ========== -->
+      <section class="screen is-active" id="screen-login" data-screen="login">
+        <div class="login-hero">
+          <div class="login-hero__glow" aria-hidden="true"></div>
+          <div class="login-hero__content">
+            <p class="eyebrow">AI Fitting Service</p>
+            <h1 class="login-hero__title">
+              <span class="brand-inline">GOLPING</span>
+              <span class="login-hero__title-sub">한 번의 로그인으로<br />맞춤 피팅을 시작하세요</span>
+            </h1>
+            <p class="login-hero__desc">
+              최근 스크린 경기 데이터로 스윙을 분석하고,<br class="hide-mobile" />
+              GBTI 유형과 추천 클럽까지 한 화면에서 확인합니다.
+            </p>
+
+            <ol class="preview-steps" aria-label="서비스 단계">
+              <li>
+                <span class="preview-steps__num">01</span>
+                <span class="preview-steps__label">데이터 분석</span>
+              </li>
+              <li>
+                <span class="preview-steps__num">02</span>
+                <span class="preview-steps__label">GBTI 유형</span>
+              </li>
+              <li>
+                <span class="preview-steps__num">03</span>
+                <span class="preview-steps__label">클럽 추천</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="login-panel">
+          <div class="login-panel__card">
+            <h2>AI 피팅 서비스</h2>
+            <p>골프존마켓 회원이시라면 로그인 후 AI 피팅 서비스를 이용하실 수 있습니다.</p>
+            <button type="button" class="btn btn--primary btn--xl" data-go="profile">
+              로그인하고 내 피팅 시작하기
+            </button>
+            <button type="button" class="btn btn--ghost btn--xl" data-go="guest-body">
+              다른사람 피팅하기
+            </button>
+            <p class="login-panel__note">프로토타입 · 실제 계정 연동 없이 바로 진행됩니다</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN: GUEST BODY ========== -->
+      <section class="screen" id="screen-guest-body" data-screen="guest-body" hidden>
+        <div class="page-shell page-shell--narrow">
+          <div class="step-rail" aria-label="진행 단계">
+            <span class="step-rail__item is-current">신체정보</span>
+            <span class="step-rail__item">스윙정보</span>
+            <span class="step-rail__item">분석결과</span>
+          </div>
+
+          <header class="page-intro">
+            <p class="eyebrow">Guest Fitting</p>
+            <h1>다른사람 피팅하기</h1>
+            <p>새로운 고객님의 피팅을 시작합니다.</p>
+          </header>
+
+          <form class="profile-form" id="guest-body-form" novalidate>
+            <h2 class="form-section-title">더 정교한 피팅을 위해<br />신장·체중 정보를 입력해 주세요.</h2>
+            <p class="profile-form__lead">다른분의 기본 정보를 알려주세요.</p>
+
+            <label class="field field--full">
+              <span class="field__label">고객 이름 <em>*</em></span>
+              <span class="field__control">
+                <input type="text" name="guestName" placeholder="예: 박준호" maxlength="20" required />
+              </span>
+            </label>
+
+            <div class="field-row">
+              <label class="field">
+                <span class="field__label">신장 <em>*</em></span>
+                <span class="field__control">
+                  <input type="number" name="height" inputmode="decimal" placeholder="예: 170" min="100" max="250" required />
+                  <span class="field__unit">cm</span>
+                </span>
+              </label>
+              <label class="field">
+                <span class="field__label">체중 <em>*</em></span>
+                <span class="field__control">
+                  <input type="number" name="weight" inputmode="decimal" placeholder="예: 70" min="30" max="200" required />
+                  <span class="field__unit">kg</span>
+                </span>
+              </label>
+            </div>
+            <p class="field-hint">※ 필수 입력정보입니다.</p>
+
+            <div class="btn-row">
+              <button type="submit" class="btn btn--primary btn--xl">피팅 시작하기</button>
+              <button type="button" class="btn btn--ghost btn--xl" data-go="login">취소</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN: GUEST SURVEY ========== -->
+      <section class="screen" id="screen-guest-survey" data-screen="guest-survey" hidden>
+        <div class="page-shell page-shell--narrow">
+          <div class="step-rail" aria-label="진행 단계">
+            <span class="step-rail__item is-done">신체정보</span>
+            <span class="step-rail__item is-current">스윙정보</span>
+            <span class="step-rail__item">분석결과</span>
+          </div>
+
+          <header class="page-intro">
+            <p class="eyebrow">Guest Fitting</p>
+            <h1>스윙·구질 정보 입력</h1>
+            <p>고객님의 평균적인 샷 특성을 선택해 주세요.</p>
+          </header>
+
+          <form class="survey-form" id="guest-survey-form" novalidate>
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">01</span>
+                <h3>성별 선택</h3>
+              </div>
+              <div class="choice-grid choice-grid--2" role="radiogroup" aria-label="성별">
+                <label class="choice"><input type="radio" name="gender" value="남성" required /><span>남성</span></label>
+                <label class="choice"><input type="radio" name="gender" value="여성" /><span>여성</span></label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">02</span>
+                <h3>나이 선택</h3>
+              </div>
+              <div class="choice-grid choice-grid--3" role="radiogroup" aria-label="나이">
+                <label class="choice"><input type="radio" name="age" value="10대" required /><span>10대</span></label>
+                <label class="choice"><input type="radio" name="age" value="20대" /><span>20대</span></label>
+                <label class="choice"><input type="radio" name="age" value="30대" /><span>30대</span></label>
+                <label class="choice"><input type="radio" name="age" value="40대" /><span>40대</span></label>
+                <label class="choice"><input type="radio" name="age" value="50대" /><span>50대</span></label>
+                <label class="choice"><input type="radio" name="age" value="60대 이상" /><span>60대+</span></label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">03</span>
+                <h3>평균 스코어 선택</h3>
+              </div>
+              <div class="choice-grid choice-grid--3" role="radiogroup" aria-label="평균 스코어">
+                <label class="choice"><input type="radio" name="score" value="70대" required /><span>70대</span></label>
+                <label class="choice"><input type="radio" name="score" value="80대" /><span>80대</span></label>
+                <label class="choice"><input type="radio" name="score" value="90대" /><span>90대</span></label>
+                <label class="choice"><input type="radio" name="score" value="100대" /><span>100대</span></label>
+                <label class="choice"><input type="radio" name="score" value="110대 이상" /><span>110대+</span></label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">04</span>
+                <h3>드라이버 비거리 선택</h3>
+              </div>
+              <div class="choice-grid choice-grid--2" role="radiogroup" aria-label="드라이버 비거리">
+                <label class="choice"><input type="radio" name="driverDist" value="150m 미만" required /><span>150m 미만</span></label>
+                <label class="choice"><input type="radio" name="driverDist" value="150–180m" /><span>150–180m</span></label>
+                <label class="choice"><input type="radio" name="driverDist" value="180–210m" /><span>180–210m</span></label>
+                <label class="choice"><input type="radio" name="driverDist" value="210–240m" /><span>210–240m</span></label>
+                <label class="choice"><input type="radio" name="driverDist" value="240m 이상" /><span>240m 이상</span></label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">05</span>
+                <h3>아이언 비거리 선택</h3>
+              </div>
+              <div class="choice-grid choice-grid--2" role="radiogroup" aria-label="아이언 비거리">
+                <label class="choice"><input type="radio" name="ironDist" value="100m 미만" required /><span>100m 미만</span></label>
+                <label class="choice"><input type="radio" name="ironDist" value="100–120m" /><span>100–120m</span></label>
+                <label class="choice"><input type="radio" name="ironDist" value="120–140m" /><span>120–140m</span></label>
+                <label class="choice"><input type="radio" name="ironDist" value="140–160m" /><span>140–160m</span></label>
+                <label class="choice"><input type="radio" name="ironDist" value="160m 이상" /><span>160m 이상</span></label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">06</span>
+                <h3>평균 탄도 (볼의 높이)</h3>
+                <p>드라이버 샷이 날아가는 높이감을 골라 주세요.</p>
+              </div>
+              <div class="viz-grid viz-grid--3" role="radiogroup" aria-label="탄도">
+                <label class="viz-choice">
+                  <input type="radio" name="trajectory" value="낮다" required />
+                  <span class="viz-choice__card">
+                    <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                      <path d="M12 58 H108" stroke="#d5dae6" stroke-width="2"/>
+                      <path d="M18 58 C40 48, 70 46, 104 52" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                      <circle cx="104" cy="52" r="4" fill="currentColor"/>
+                    </svg>
+                    <strong>낮다</strong>
+                    <small>낮게 깔리며 앞으로</small>
+                  </span>
+                </label>
+                <label class="viz-choice">
+                  <input type="radio" name="trajectory" value="중간" />
+                  <span class="viz-choice__card">
+                    <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                      <path d="M12 58 H108" stroke="#d5dae6" stroke-width="2"/>
+                      <path d="M18 58 C42 28, 78 22, 104 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                      <circle cx="104" cy="48" r="4" fill="currentColor"/>
+                    </svg>
+                    <strong>중간</strong>
+                    <small>가장 흔한 보통 높이</small>
+                  </span>
+                </label>
+                <label class="viz-choice">
+                  <input type="radio" name="trajectory" value="높다" />
+                  <span class="viz-choice__card">
+                    <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                      <path d="M12 58 H108" stroke="#d5dae6" stroke-width="2"/>
+                      <path d="M18 58 C36 10, 70 6, 104 42" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                      <circle cx="104" cy="42" r="4" fill="currentColor"/>
+                    </svg>
+                    <strong>높다</strong>
+                    <small>높이 떴다가 떨어짐</small>
+                  </span>
+                </label>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">07</span>
+                <h3>주로 나타나는 구질</h3>
+                <p>티샷이 어느 쪽으로 휘는지 그림으로 골라 주세요.</p>
+              </div>
+
+              <div class="flight-groups">
+                <div class="flight-group">
+                  <p class="flight-group__label">왼쪽에서 출발 · 훅 계열</p>
+                  <div class="viz-grid viz-grid--3" role="radiogroup" aria-label="훅 계열 구질">
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="풀 훅" required />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M20 56 C34 20, 42 18, 58 34 C70 46, 78 54, 98 50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="20" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="98" cy="50" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>풀 훅</strong>
+                        <small>왼쪽 출발 → 더 왼쪽</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="풀 스트레이트" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M28 56 L72 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="28" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="72" cy="22" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>풀 스트레이트</strong>
+                        <small>왼쪽 출발 → 직진</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="풀 슬라이스" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M30 54 C40 24, 58 18, 70 30 C84 46, 94 52, 104 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="30" cy="54" r="3.5" fill="#98a0b3"/>
+                          <circle cx="104" cy="48" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>풀 슬라이스</strong>
+                        <small>왼쪽 출발 → 오른쪽</small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="flight-group">
+                  <p class="flight-group__label">가운데 출발 · 스트레이트 계열</p>
+                  <div class="viz-grid viz-grid--3">
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="드로우" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M60 56 C68 28, 58 18, 42 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="60" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="42" cy="28" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>드로우</strong>
+                        <small>가운데 → 살짝 왼쪽</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="스트레이트" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M60 56 L60 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="60" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="60" cy="18" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>스트레이트</strong>
+                        <small>가운데 → 곧게</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="페이드" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M60 56 C52 28, 62 18, 78 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="60" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="78" cy="28" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>페이드</strong>
+                        <small>가운데 → 살짝 오른쪽</small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="flight-group">
+                  <p class="flight-group__label">오른쪽에서 출발 · 슬라이스 계열</p>
+                  <div class="viz-grid viz-grid--3">
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="푸시 훅" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M90 54 C80 24, 62 18, 50 30 C36 46, 28 52, 18 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="90" cy="54" r="3.5" fill="#98a0b3"/>
+                          <circle cx="18" cy="48" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>푸시 훅</strong>
+                        <small>오른쪽 출발 → 왼쪽</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="푸시 스트레이트" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M88 56 L48 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="88" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="48" cy="22" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>푸시 스트레이트</strong>
+                        <small>오른쪽 출발 → 직진</small>
+                      </span>
+                    </label>
+                    <label class="viz-choice">
+                      <input type="radio" name="flight" value="푸시 슬라이스" />
+                      <span class="viz-choice__card">
+                        <svg class="viz-choice__art" viewBox="0 0 120 72" aria-hidden="true">
+                          <path d="M16 58 H104" stroke="#d5dae6" stroke-width="2"/>
+                          <path d="M92 56 C86 24, 92 18, 104 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="92" cy="56" r="3.5" fill="#98a0b3"/>
+                          <circle cx="104" cy="28" r="4" fill="currentColor"/>
+                        </svg>
+                        <strong>푸시 슬라이스</strong>
+                        <small>오른쪽 출발 → 더 오른쪽</small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="survey-card">
+              <div class="survey-card__head">
+                <span class="survey-card__step">08</span>
+                <h3>볼이 주로 떨어지는 지점</h3>
+                <p>페어웨이를 위에서 본 모습입니다. 자주 떨어지는 구역을 눌러 주세요.</p>
+              </div>
+              <div class="fairway" role="radiogroup" aria-label="낙하 지점">
+                <label class="fairway__cell fairway__cell--ob"><input type="radio" name="landing" value="왼쪽 OB" required /><span>왼쪽<br />OB</span></label>
+                <label class="fairway__cell fairway__cell--rough"><input type="radio" name="landing" value="왼쪽 러프" /><span>왼쪽<br />러프</span></label>
+                <label class="fairway__cell fairway__cell--fair"><input type="radio" name="landing" value="왼쪽 페어웨이" /><span>왼쪽<br />페어웨이</span></label>
+                <label class="fairway__cell fairway__cell--center"><input type="radio" name="landing" value="중앙" /><span>중앙</span></label>
+                <label class="fairway__cell fairway__cell--fair"><input type="radio" name="landing" value="오른쪽 페어웨이" /><span>오른쪽<br />페어웨이</span></label>
+                <label class="fairway__cell fairway__cell--rough"><input type="radio" name="landing" value="오른쪽 러프" /><span>오른쪽<br />러프</span></label>
+                <label class="fairway__cell fairway__cell--ob"><input type="radio" name="landing" value="오른쪽 OB" /><span>오른쪽<br />OB</span></label>
+              </div>
+            </section>
+
+            <div class="btn-row">
+              <button type="submit" class="btn btn--primary btn--xl">완료</button>
+              <button type="button" class="btn btn--ghost btn--xl" data-go="guest-body">이전</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN: PROFILE ========== -->
+      <section class="screen" id="screen-profile" data-screen="profile" hidden>
+        <div class="page-shell page-shell--narrow">
+          <div class="step-rail" aria-label="진행 단계">
+            <span class="step-rail__item is-done">로그인</span>
+            <span class="step-rail__item is-current">신체정보</span>
+            <span class="step-rail__item">분석결과</span>
+          </div>
+
+          <header class="page-intro">
+            <h1>더 정교한 피팅을 위해<br />신장·체중 정보를 입력해 주세요</h1>
+            <p>입력하신 정보는 피팅 분석에만 사용되며 안전하게 보호됩니다.</p>
+          </header>
+
+          <form class="profile-form" id="profile-form" novalidate>
+            <p class="profile-form__lead"><span class="name-accent">강유나</span>님의 신장과 체중을 알려주세요.</p>
+
+            <div class="field-row">
+              <label class="field">
+                <span class="field__label">신장 <em>*</em></span>
+                <span class="field__control">
+                  <input type="number" name="height" inputmode="decimal" value="159" min="100" max="250" required />
+                  <span class="field__unit">cm</span>
+                </span>
+              </label>
+              <label class="field">
+                <span class="field__label">체중 <em>*</em></span>
+                <span class="field__control">
+                  <input type="number" name="weight" inputmode="decimal" value="49" min="30" max="200" required />
+                  <span class="field__unit">kg</span>
+                </span>
+              </label>
+            </div>
+            <p class="field-hint">※ 필수 입력정보입니다.</p>
+
+            <div class="consent-list">
+              <details class="consent" open>
+                <summary>
+                  <label class="check">
+                    <input type="checkbox" name="consent1" checked required />
+                    <span class="check__box" aria-hidden="true"></span>
+                    <span>개인정보 수집에 동의합니다</span>
+                  </label>
+                </summary>
+                <div class="consent__body">
+                  피팅 분석을 위해 신장·체중 및 스크린 경기 데이터를 수집·이용합니다. 목적 달성 후 관련 법령에 따라 보관·파기됩니다.
+                </div>
+              </details>
+
+              <details class="consent" open>
+                <summary>
+                  <label class="check">
+                    <input type="checkbox" name="consent2" checked required />
+                    <span class="check__box" aria-hidden="true"></span>
+                    <span>개인정보 제3자 제공에 동의합니다</span>
+                  </label>
+                </summary>
+                <div class="consent__body">
+                  맞춤 클럽 추천을 위해 골프존마켓 피팅 파트너에게 분석에 필요한 최소 정보가 제공될 수 있습니다.
+                </div>
+              </details>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--xl btn--block" id="start-fitting">
+              내 피팅 시작하기
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN: RESULTS ========== -->
+      <section class="screen" id="screen-results" data-screen="results" hidden>
+        <div class="page-shell">
+          <div class="step-rail" aria-label="진행 단계">
+            <span class="step-rail__item is-done">로그인</span>
+            <span class="step-rail__item is-done">신체정보</span>
+            <span class="step-rail__item is-current">분석결과</span>
+          </div>
+
+          <nav class="result-toc" aria-label="결과 바로가기">
+            <a href="#sec-games">최근 경기</a>
+            <a href="#sec-ai">AI 분석</a>
+            <a href="#sec-gbti">GBTI</a>
+            <a href="#sec-fitting">추천 클럽</a>
+            <a href="#sec-detail">상세 분석</a>
+          </nav>
+
+          <!-- 1. Recent games -->
+          <section class="block" id="sec-games">
+            <div class="block__head">
+              <p class="eyebrow">Screen Data</p>
+              <h2>최근 골프존 스크린 3경기</h2>
+              <p data-r="gamesIntro">가장 최근에 플레이하신 3경기의 데이터를 성공적으로 추출했습니다. 3경기 평균 데이터를 산출하여, <strong>강유나</strong>님의 샷 데이터를 정밀하게 분석하겠습니다.</p>
+            </div>
+
+            <div class="score-hero">
+              <div class="score-hero__main">
+                <span class="score-hero__label">3경기 평균 스코어</span>
+                <strong class="score-hero__value" data-r="avgScore" data-count="95">0</strong>
+              </div>
+              <ul class="score-list" data-r="scoreList">
+                <li>
+                  <time datetime="2025-11-15">2025.11.15</time>
+                  <strong>98</strong>
+                </li>
+                <li>
+                  <time datetime="2025-11-08">2025.11.08</time>
+                  <strong>92</strong>
+                </li>
+                <li>
+                  <time datetime="2025-11-01">2025.11.01</time>
+                  <strong>95</strong>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 2. AI Analysis -->
+          <section class="block" id="sec-ai">
+            <div class="block__head">
+              <p class="eyebrow">AI Analysis</p>
+              <h2>AI 분석결과</h2>
+              <p data-r="aiLead"><strong>강유나</strong>님의 스크린 경기 결과를 분석하겠습니다. 최근 3경기 평균스코어는 <em>95타</em>로, 높은 수준의 골프 실력을 가지고 계시네요.</p>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric">
+                <span class="metric__label">헤드스피드</span>
+                <strong data-r="headSpeed">33 <small>m/s</small></strong>
+              </article>
+              <article class="metric">
+                <span class="metric__label">볼스피드</span>
+                <strong data-r="ballSpeed">46 <small>m/s</small></strong>
+              </article>
+              <article class="metric">
+                <span class="metric__label">스매시팩터</span>
+                <strong data-r="smash">1.39</strong>
+              </article>
+              <article class="metric">
+                <span class="metric__label">런 포함 비거리</span>
+                <strong data-r="totalDist">144 <small>m</small></strong>
+              </article>
+              <article class="metric">
+                <span class="metric__label">캐리</span>
+                <strong data-r="carry">129 <small>m</small></strong>
+              </article>
+              <article class="metric">
+                <span class="metric__label">런치앵글</span>
+                <strong data-r="launch">16°</strong>
+              </article>
+            </div>
+
+            <div class="insight-stack">
+              <article class="insight">
+                <h3>스윙 효율 및 비거리</h3>
+                <p data-r="insightSwing">
+                  33 m/s의 헤드스피드에 볼스피드 46 m/s를 기록하셨고, 스매시팩터 1.39는 보통 수준의 정타율입니다.
+                  런 포함 비거리는 144 m이며, 캐리 129 m는 동급 기준 122 m보다 <strong>7 m 상회</strong>하는 수준입니다.
+                  캐리 후에는 약 15 m의 런거리가 더해지고 있어요.
+                </p>
+              </article>
+              <article class="insight">
+                <h3>탄도 및 구질</h3>
+                <p data-r="insightFlight">
+                  런치앵글(발사각도)은 16°로 최적 16°와 일치하는 이상적인 탄도를 보이고 계십니다.
+                  왼쪽으로 출발하며 큰 휘어짐 없이 날아가는 <strong>풀스트레이트</strong> 구질에 이상적인 탄도가 더해져,
+                  방향성과 거리 모두에서 안정적인 강점이 돋보입니다.
+                </p>
+              </article>
+            </div>
+
+            <div class="rating-panel">
+              <div class="rating-panel__summary">
+                <span>종합평가</span>
+                <strong><em data-r="overall" data-count-decimal="4.5">0.0</em> / 5</strong>
+              </div>
+              <ul class="rating-bars" data-r="ratingBars">
+                <li>
+                  <span>구질 방향성</span>
+                  <div class="bar" style="--v:100%"><i></i></div>
+                  <strong>5</strong>
+                </li>
+                <li>
+                  <span>비거리</span>
+                  <div class="bar" style="--v:100%"><i></i></div>
+                  <strong>5</strong>
+                </li>
+                <li>
+                  <span>탄도</span>
+                  <div class="bar" style="--v:100%"><i></i></div>
+                  <strong>5</strong>
+                </li>
+                <li>
+                  <span>정타율</span>
+                  <div class="bar" style="--v:60%"><i></i></div>
+                  <strong>3</strong>
+                </li>
+              </ul>
+              <p class="rating-panel__note" data-r="ratingNote">
+                종합적으로 구질 방향성은 5점 만점으로 매우 안정적이고 일관성이 높으며, 비거리 5점과 탄도 5점도 경쟁력 있는 수준입니다.
+                정타율은 3점으로 무난한 편이며, 임팩트 효율을 보완하면 더 좋은 스코어를 기록할 수 있을 것으로 보입니다.
+              </p>
+            </div>
+          </section>
+
+          <!-- 3. GBTI -->
+          <section class="block" id="sec-gbti">
+            <div class="block__head">
+              <p class="eyebrow">GBTI</p>
+              <h2 data-r="gbtiTitle"><span class="name-accent">강유나</span>님은 <em>퍼펙트 스트레이터</em> 의 골퍼시네요!</h2>
+              <p data-r="gbtiDesc">GBTI 유형 분석 결과 · 미드 스트레이터 유형은 적정 탄도에 안정적인 스트레이트 구질이 특징이에요.</p>
+            </div>
+
+            <div class="gbti-board">
+              <div class="gbti-board__cards">
+                <article class="gbti-card gbti-card--wide">
+                  <div class="gbti-card__tags" data-r="gbtiTags">
+                    <span class="pill pill--green">MIDDLE</span>
+                    <span class="pill pill--violet">STRAIGHT</span>
+                  </div>
+                  <div class="gbti-card__viz" aria-hidden="true">
+                    <svg viewBox="0 0 160 90" width="140" height="78">
+                      <g stroke-linecap="round" stroke-width="4">
+                        <path d="M20 70 L45 30" stroke="#c9ced8"/>
+                        <path d="M40 70 L60 28" stroke="#aeb6c8"/>
+                        <path d="M80 78 L80 18" stroke="#444CFE" stroke-width="5"/>
+                        <path d="M120 70 L100 28" stroke="#aeb6c8"/>
+                        <path d="M140 70 L115 30" stroke="#c9ced8"/>
+                      </g>
+                      <circle cx="80" cy="78" r="6" fill="#444CFE"/>
+                    </svg>
+                  </div>
+                  <p data-r="gbtiFlightLabel">퍼펙트 스트레이터 구질</p>
+                  <div class="gbti-card__stat">
+                    <span>전체 골프 유형 중</span>
+                    <strong data-r="gbtiStat"><span class="pill pill--violet">MID-ST</span> 13.4%</strong>
+                  </div>
+                </article>
+
+                <article class="gbti-card">
+                  <p>헤드스피드</p>
+                  <div class="gbti-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" width="28" height="28">
+                      <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                      <path d="M20 20 L28 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="20" cy="20" r="2.5" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <strong data-r="gbtiHeadSpeed">33 m/s</strong>
+                </article>
+                <article class="gbti-card">
+                  <p>비거리</p>
+                  <div class="gbti-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" width="28" height="28">
+                      <path d="M10 30h20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M14 30c2-8 5-14 10-18" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                      <circle cx="26" cy="10" r="3" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <strong data-r="gbtiDist">144 m</strong>
+                </article>
+                <article class="gbti-card">
+                  <p>골프 유형</p>
+                  <div class="gbti-mascot" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" width="30" height="30">
+                      <circle cx="24" cy="26" r="12" fill="#fff" stroke="currentColor" stroke-width="2"/>
+                      <path d="M16 18c2-6 8-8 14-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <circle cx="20" cy="24" r="1.6" fill="currentColor"/>
+                      <circle cx="28" cy="24" r="1.6" fill="currentColor"/>
+                      <path d="M20 30c2 2 6 2 8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <rect x="21" y="8" width="10" height="6" rx="2" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <strong data-r="gbtiCode">MID-ST</strong>
+                </article>
+              </div>
+
+              <div class="gbti-scales">
+                <div class="scale">
+                  <div class="scale__labels">
+                    <span>LOW</span><span>MID</span><span>HIGH</span>
+                  </div>
+                  <div class="scale__track">
+                    <span class="scale__marker" data-r="trajPos" style="--pos:50%"></span>
+                  </div>
+                  <p class="scale__title">탄도</p>
+                </div>
+                <div class="scale">
+                  <div class="scale__labels scale__labels--5">
+                    <span>HO</span><span>DR</span><span>ST</span><span>FA</span><span>SL</span>
+                  </div>
+                  <div class="scale__track">
+                    <span class="scale__marker" data-r="flightPos" style="--pos:50%"></span>
+                  </div>
+                  <p class="scale__title">구질</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="insight-stack">
+              <article class="insight">
+                <h3>현재 스윙 특성</h3>
+                <ul class="pros-cons" data-r="prosCons">
+                  <li class="is-pro"><strong>장점</strong> 탄도가 적정 수준이라 공의 높이와 거리 사이의 균형이 좋아요.</li>
+                  <li class="is-pro"><strong>장점</strong> 구질이 스트레이트라 방향성이 안정적이고, 샷 결과를 예측하기 쉬워요.</li>
+                  <li class="is-neutral"><strong>단점</strong> 분석 결과, 뚜렷한 단점은 발견되지 않았어요.</li>
+                </ul>
+              </article>
+              <article class="insight">
+                <h3>클럽 추천 방향성</h3>
+                <p data-r="clubDirection">
+                  지금의 탄도와 구질 밸런스가 좋으니, 기존 스윙 특성을 해치지 않는 클럽을 고르시면 충분해요.
+                  특정 상황에서 탄도나 구질을 조절해야 할 때는, 피팅 결과를 기준으로 로프트와 샤프트를 세밀하게 맞추는 것을 추천드려요.
+                </p>
+              </article>
+              <article class="insight">
+                <h3>개선 포인트</h3>
+                <ul class="pros-cons" data-r="improvePoints">
+                  <li class="is-pro">지금의 안정적인 스트레이트 구질은 그대로 유지하세요.</li>
+                  <li class="is-tip">다양한 구질 연습(페이드, 드로우 등)을 병행하면 샷 메뉴가 넓어지고, 골프의 재미도 한층 더 느끼실 수 있어요.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- 4. Fitting clubs -->
+          <section class="block" id="sec-fitting">
+            <div class="block__head">
+              <p class="eyebrow">Fitting Result</p>
+              <h2>피팅결과 추천 클럽</h2>
+              <p data-r="fittingIntro">골프존마켓 피팅전문가들이 신중하게 선정한 <strong>강유나</strong>님의 드라이버 피팅결과는 다음과 같습니다.</p>
+            </div>
+
+            <div class="club-tabs" role="tablist" aria-label="추천 카테고리">
+              <button type="button" class="club-tabs__btn is-active" role="tab" aria-selected="true" data-tab="driver">드라이버</button>
+              <button type="button" class="club-tabs__btn" role="tab" aria-selected="false" data-tab="iron">아이언</button>
+              <button type="button" class="club-tabs__btn" role="tab" aria-selected="false" data-tab="ball">골프공</button>
+            </div>
+
+            <div class="club-panels">
+              <div class="club-panel is-active" data-panel="driver" role="tabpanel">
+                <div class="club-grid">
+                  <article class="club-card is-best">
+                    <div class="club-card__top">
+                      <span class="club-card__rank">추천 1</span>
+                    </div>
+                    <h3>마제스티 2023 STERNA</h3>
+                    <dl class="club-specs">
+                      <div><dt>샤프트</dt><dd>STERNA</dd></div>
+                      <div><dt>강도</dt><dd>L</dd></div>
+                      <div><dt>로프트</dt><dd>11.5°</dd></div>
+                    </dl>
+                    <p class="club-card__price">판매가 <strong>390,000원</strong></p>
+                    <button type="button" class="btn btn--primary btn--block">구매하기</button>
+                  </article>
+
+                  <article class="club-card">
+                    <div class="club-card__top">
+                      <span class="club-card__rank">추천 2</span>
+                    </div>
+                    <h3>테일러메이드 Qi4D MaxLite</h3>
+                    <dl class="club-specs">
+                      <div><dt>샤프트</dt><dd>REAX MR 40</dd></div>
+                      <div><dt>강도</dt><dd>L</dd></div>
+                      <div><dt>로프트</dt><dd>10.5°</dd></div>
+                    </dl>
+                    <p class="club-card__price">판매가 <strong>789,000원</strong></p>
+                    <button type="button" class="btn btn--primary btn--block">구매하기</button>
+                  </article>
+
+                  <article class="club-card">
+                    <div class="club-card__top">
+                      <span class="club-card__rank">추천 3</span>
+                    </div>
+                    <h3>캘러웨이 QUANTUM MAX FAST</h3>
+                    <dl class="club-specs">
+                      <div><dt>샤프트</dt><dd>UST Speedstar 40</dd></div>
+                      <div><dt>강도</dt><dd>L</dd></div>
+                      <div><dt>로프트</dt><dd>12°</dd></div>
+                    </dl>
+                    <p class="club-card__price">판매가 <strong>820,000원</strong></p>
+                    <button type="button" class="btn btn--primary btn--block">구매하기</button>
+                  </article>
+                </div>
+              </div>
+
+              <div class="club-panel" data-panel="iron" role="tabpanel" hidden>
+                <div class="empty-panel">
+                  <p>아이언 추천은 드라이버 피팅 확정 후 이어서 안내됩니다.</p>
+                  <p class="empty-panel__sub">프로토타입에서는 드라이버 추천 3종을 우선 확인할 수 있어요.</p>
+                </div>
+              </div>
+
+              <div class="club-panel" data-panel="ball" role="tabpanel" hidden>
+                <div class="empty-panel">
+                  <p>골프공 추천은 스핀·론치 프로파일 기준으로 준비 중입니다.</p>
+                  <p class="empty-panel__sub">프로토타입에서는 드라이버 추천 3종을 우선 확인할 수 있어요.</p>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- 5. AI recommendation detail -->
+          <section class="block" id="sec-detail">
+            <div class="block__head">
+              <p class="eyebrow">AI Recommendation</p>
+              <h2>AI 추천 분석</h2>
+            </div>
+
+            <article class="summary-strip">
+              <h3>회원님 스윙 분석 요약</h3>
+              <ul data-r="detailSummary">
+                <li>헤드스피드 <strong>33 m/s</strong> · 볼스피드 <strong>46 m/s</strong> · 스매시팩터 <strong>1.39</strong></li>
+                <li>구질 <strong>PullStraight</strong> (좌측 출발 후 직진) · 캐리 <strong>129 m</strong></li>
+                <li>클럽패스 <strong>-8°</strong> (아웃-투-인) · 론치앵글 <strong>16°</strong> · 백스핀 <strong>3,556 rpm</strong></li>
+              </ul>
+            </article>
+
+            <div class="table-wrap">
+              <table class="compare-table">
+                <caption>추천 드라이버 비교</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">구분</th>
+                    <th scope="col">로프트</th>
+                    <th scope="col">샤프트</th>
+                    <th scope="col">판매가</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">① 마제스티 2023 STERNA</th>
+                    <td>11.5°</td>
+                    <td>STERNA L</td>
+                    <td>390,000원</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">② 테일러메이드 Qi4D MaxLite</th>
+                    <td>10.5°</td>
+                    <td>REAX MR 40 L</td>
+                    <td>789,000원</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">③ 캘러웨이 QUANTUM MAX FAST</th>
+                    <td>12°</td>
+                    <td>UST Speedstar 40 L</td>
+                    <td>820,000원</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="detail-list">
+              <article class="detail-item">
+                <h3>① 마제스티 2023 STERNA 드라이버</h3>
+                <p>
+                  슬라이스를 막아주는 토 웨이트 기술이 적용되어, 아웃-투-인 궤도(클럽패스 -8°)를 가진 회원님의 볼을 더 곧게 보내 주는 데 도움이 됩니다.
+                  HIGH DRAW WEIGHT CARBON COMPOSITE 헤드 기술로 33 m/s 헤드스피드에서도 안정적인 임팩트를 기대할 수 있습니다.
+                </p>
+              </article>
+              <article class="detail-item">
+                <h3>② 테일러메이드 Qi4D MaxLite 드라이버</h3>
+                <p>
+                  Advanced Aerodynamic Design으로 공기 저항을 줄여 스윙 속도 손실을 최소화합니다.
+                  로프트 10.5°는 높은 백스핀(3,556 rpm)을 낮춰 낮은 스핀(좌우 휘어짐을 줄여주는) 탄도를 만들어 주어 사이드스핀(-340 rpm) 관리에 도움이 됩니다.
+                  High Adjustable TAS System으로 세팅 조정도 가능합니다.
+                </p>
+              </article>
+              <article class="detail-item">
+                <h3>③ 캘러웨이 QUANTUM MAX FAST 드라이버</h3>
+                <p>
+                  Tri Force Face 360° 카본 섀시와 티타늄, 폴리 메시, 카본 파이버 소재의 결합으로 볼스피드를 끌어올리는 설계입니다.
+                  현재 1.39인 스매시팩터를 높이는 데 도움이 되며, 로프트 12°는 회원님의 론치앵글(16°)과 함께 129 m 캐리를 안정적으로 유지하는 데 유리합니다.
+                </p>
+              </article>
+            </div>
+
+            <div class="complete-banner">
+              <p>AI 추천 분석이 완료되었습니다.</p>
+              <button type="button" class="btn btn--ghost" data-go="login">처음으로</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
